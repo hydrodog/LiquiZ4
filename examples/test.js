@@ -73,7 +73,7 @@ function Instr(id, s) {
 	this.s = s;
 }
 
-Instr.prototype.draw = function(div) {
+Instr.prototype.draw = function() {
 	app(this.s);
 }
 
@@ -82,17 +82,33 @@ function Eqn(id, s) {
 	this.s = s;
 }
 
-Eqn.prototype.draw = function(div) {
+Eqn.prototype.draw = function() {
 	app(this.s);
 }
 
 //pure audio player, no controls
-function Audio(id, file) {
+function Aud(id, file) {
 	this.audio = new Audio(file);
 }
 
-Audio.prototype.draw = function(div) {
+Aud.prototype.draw = function() {
 	this.audio.play();
+}
+
+function Img(id, file) {
+	this.src = file;
+}
+
+Img.prototype.draw = function() {
+
+}
+
+function Fillin(parent, id) {
+
+}
+
+Fillin.prototype.draw = function() {
+
 }
 
 function QC(parent, json) {
@@ -105,12 +121,13 @@ function QC(parent, json) {
 	this.comp = [];
 	for (var i = 0; i < json.comp.length; ++i) {
 		var comp = json.comp[i];
-		var c = "new " + comp[0] + "(" + comp.slice(1) + ")";
+		var c = "new " + comp[0] + "('" + comp.slice(1) + "')";
 		console.log(c);
 		comp.push(eval(c));
 	}
 }
 
+QC.prototype = base;
 QC.prototype.buildHeader = function() {
 
 }
@@ -160,7 +177,7 @@ function load() {
 	comp: [
 		["Instr", "What is"],
 		["Eqn", "2+2"],
-		["Audio", "great.mp3"],
+		["Aud", "great.mp3"],
 		["Img", "cat.jpg"]
 	]
 },
@@ -170,7 +187,7 @@ function load() {
 	comp: [
 		["Instr", "What is"],
 		["Eqn", "3*4"],
-		["Audio", "great.mp3"],
+		["Aud", "great.mp3"],
 		["Img", "cat.jpg"],
 		["Fillin", "q1000"]
 	]

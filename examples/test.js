@@ -64,7 +64,25 @@ function StringAnswer(id, s) {
 	this.s = s;
 }
 
-StringAnswer.draw = function(div) {
+StringAnswer.prototype.draw = function(div) {
+	app(this.s);
+}
+
+function Instr(id, s) {
+	this.id = id;
+	this.s = s;
+}
+
+Instr.prototype.draw = function(div) {
+	app(this.s);
+}
+
+function Eqn(id, s) {
+	this.id = id;
+	this.s = s;
+}
+
+Eqn.prototype.draw = function(div) {
 	app(this.s);
 }
 
@@ -77,14 +95,44 @@ Audio.prototype.draw = function(div) {
 	this.audio.play();
 }
 
+function QC(parent, json) {
+	this.id = json.id;
+	this.title = json.title;
+	//TODO: inherit default from quiz, then from user (not 1)
+	this.points = (typeof json.points === 'undefined') ? 1 : json.points;
+	this.level = (typeof json.level === 'undefined') ? 1 : json.level;
+	this.md(parent);
+	this.comp = [];
+	for (var i = 0; i < json.comp.length; ++i) {
+		var comp = json.comp[i];
+		var c = "new " + comp[0] + "(" + comp.slice(1) + ")";
+		console.log(c);
+		comp.push(eval(c));
+	}
+}
+
+QC.prototype.buildHeader = function() {
+
+}
+
+QC.prototype.draw = function() {
+	var d = this.buildHeader();
+	for (var i = 0; i < comp.length; ++i)
+		this.comp[i].draw();
+}
+
+
 function Quiz(parent, json) {
 	for (var k in json) {
 		this[k] = json[k];
 	}
 	this.md(parent);
 	this.policy = prefs.getPolicy(json);
-	this.questions = [];
-
+	for (var i = 0; i < this.questions.length; ++i) {
+		console.log(this.questions[i]);
+		this.questions[i] = new QC(this.div, this.questions[i]);
+		console.log(this.questions[i]);
+	}
 }
 Quiz.prototype = base;
 
@@ -95,31 +143,47 @@ Quiz.prototype.add = function(qc) {
 
 Quiz.prototype.draw = function() {
 	this.div.innerHTML = "";
-	for (var qc in this.questions) {
-		qc.draw();
+	for (var i = 0; i < this.questions.length; ++i) {
+		this.questions[i].draw();
 	}
 
 }
 
-function QC(parent, json) {
-	this.id = json.id;
-	this.title = json.title;
-	//TODO: inherit default from quiz, then from user (not 1)
-	this.points = (typeof json.points === 'undefined') ? 1 : json.points;
-	this.level = (typeof json.level === 'undefined') ? 1 : json.level;
-	this.md(parent);
-}
-
-QC.prototype.draw = function() {
-
-}
 
 function load() {
 	var p = document.getElementById("content");
 	console.log(p);
+	var quest = [
+{
+	id: "qc1000",
+	title: "Addition",
+	comp: [
+		["Instr", "What is"],
+		["Eqn", "2+2"],
+		["Audio", "great.mp3"],
+		["Img", "cat.jpg"]
+	]
+},
+{
+	id: "qc1001",
+	title: "Multiplication",
+	comp: [
+		["Instr", "What is"],
+		["Eqn", "3*4"],
+		["Audio", "great.mp3"],
+		["Img", "cat.jpg"],
+		["Fillin", "q1000"]
+	]
+}
+
+
+
+
+	];
 	var json = {
   		title: "test",
  		class: "L-quiz",
+ 		questions: quest
 	}
 	var q = new Quiz(p, json);
 	q.draw();

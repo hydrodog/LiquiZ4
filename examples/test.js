@@ -155,6 +155,7 @@ function Quiz(parent, json) {
 		this[k] = json[k];
 	}
 	this.md(parent);
+	//parent.appendChild(this.div);
 	this.policy = prefs.getPolicy(json);
 	for (var i = 0; i < this.questions.length; ++i) {
 		console.log(this.questions[i]);
@@ -171,7 +172,6 @@ Quiz.prototype.add = function(qc) {
 }
 
 Quiz.prototype.drawQuiz = function() {
-	this.div.innerHTML = "";
 	console.log(this);
 	console.log(this.questions.length);
 	for (var i = 0; i < this.questions.length; ++i) {
@@ -191,8 +191,9 @@ function load() {
 	id: "qc1000",
 	title: "Addition",
 	comp: [
-		["Instr", "What is", "1"],
+		["Instr", "What is ", "1"],
 		["Eqn", "2+2", "2"],
+//		["Instr", "?", "1"],
 		["Aud", "great.mp3","3"],
 		["Img", "cat.jpg","4"]
 	]
@@ -201,8 +202,9 @@ function load() {
 	id: "qc1001",
 	title: "Multiplication",
 	comp: [
-		["Instr", "What is","5"],
+		["Instr", "What is ","5"],
 		["Eqn", "3*4", "6"],
+//		["Instr", "?","5"],
 		["Aud", "great.mp3", "7"],
 		["Img", "cat.jpg","8"],
 		[ "Fillin", "q1000","9"]

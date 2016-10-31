@@ -1,11 +1,19 @@
+Util = {
+  subClass: function (sup, sub) {
+    sub.prototype = Object.create(sup.prototype);
+    sub.prototype.constructor = sub;
+  }
+};
+
+
 // Display element can draw itself into a div box,
 // has optional class
 function Display(id, clas) {
+	this.div;
 	this.id = id;
 	this.class = clas; // could be undefined?
 }
 
-var base = new Display(null, 'LiquiZ');
 function app(div, text) {
 	div.appendChild(document.createTextNode(text));
 }
@@ -39,7 +47,7 @@ function Response() {
 
 }
 
-Response.prototype = base;
+Util.subClass(Display, Response);
 
 function Prefs() {}
 
@@ -57,7 +65,7 @@ function Answer(id) {
 	
 }
 
-Answer.prototype = base;
+Util.subClass(Display, Answer);
 
 function StringAnswer(id, s) {
 	this.id = id; // do in parent
@@ -65,7 +73,7 @@ function StringAnswer(id, s) {
 }
 
 StringAnswer.prototype.draw = function(div) {
-	app(this.s);
+	app(div, this.s);
 }
 
 function Instr(id, s) {
@@ -73,8 +81,9 @@ function Instr(id, s) {
 	this.s = s;
 }
 
-Instr.prototype.draw = function() {
-	app(this.s);
+Instr.prototype.draw = function(div) {
+	console.log(this);
+	app(div, this.s);
 }
 
 function Eqn(id, s) {
@@ -82,8 +91,8 @@ function Eqn(id, s) {
 	this.s = s;
 }
 
-Eqn.prototype.draw = function() {
-	app(this.s);
+Eqn.prototype.draw = function(div) {
+	app(div, this.s);
 }
 
 //pure audio player, no controls
@@ -91,7 +100,7 @@ function Aud(id, file) {
 	this.audio = new Audio(file);
 }
 
-Aud.prototype.draw = function() {
+Aud.prototype.draw = function(div) { //do we want to display the audio?
 	this.audio.play();
 }
 
@@ -100,14 +109,14 @@ function Img(id, file) {
 }
 
 Img.prototype.draw = function() {
-
+	
 }
 
 function Fillin(parent, id) {
 
 }
 
-Fillin.prototype.draw = function() {
+Fillin.prototype.draw = function() { 
 
 }
 
@@ -123,23 +132,26 @@ function QC(parent, json) {
 		var comp = json.comp[i];
 		var c = "new " + comp[0] + "('" + comp.slice(1) + "')";
 		console.log(c);
-		comp.push(eval(c));
+		this.comp.push(eval(c));
 	}
 }
 
-QC.prototype = base;
-QC.prototype.buildHeader = function() {
+Util.subClass(Display, QC);
+
+QC.prototype.buildHeader = function() { //is this needed?
 
 }
 
-QC.prototype.draw = function() {
+QC.prototype.draw = function() {  //need to pass in some kind of element to draw onto?
 	var d = this.buildHeader();
-	for (var i = 0; i < comp.length; ++i)
-		this.comp[i].draw();
+	console.log(this);
+	for (var i = 0; i < this.comp.length; ++i)
+		this.comp[i].draw(this.div); //pass in div
 }
 
 
 function Quiz(parent, json) {
+	
 	for (var k in json) {
 		this[k] = json[k];
 	}
@@ -150,8 +162,9 @@ function Quiz(parent, json) {
 		this.questions[i] = new QC(this.div, this.questions[i]);
 		console.log(this.questions[i]);
 	}
+	console.log(this);
 }
-Quiz.prototype = base;
+Util.subClass(Display, Quiz);
 
 //add question container
 Quiz.prototype.add = function(qc) {
@@ -160,11 +173,15 @@ Quiz.prototype.add = function(qc) {
 
 Quiz.prototype.draw = function() {
 	this.div.innerHTML = "";
+	console.log(this);
+	console.log(this.questions.length);
 	for (var i = 0; i < this.questions.length; ++i) {
+		console.log(this.questions[i].draw); //this is thinking to do quiz.draw??
 		this.questions[i].draw();
 	}
 
 }
+
 
 
 function load() {
@@ -178,7 +195,9 @@ function load() {
 		["Instr", "What is"],
 		["Eqn", "2+2"],
 		["Aud", "great.mp3"],
-		["Img", "cat.jpg"]
+		["Img", "cat.jpg"],
+		["Fillin","q1000"]
+		
 	]
 },
 {

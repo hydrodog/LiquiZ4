@@ -104,11 +104,12 @@ Aud.prototype.draw = function(div) { //do we want to display the audio?
 }
 
 function Img(id, file) {
-	this.src = file;
+    this.img = document.createElement("img");
+    this.img.src = file;
 }
 
-Img.prototype.draw = function() {
-	
+Img.prototype.draw = function(div) {
+    div.appendChild(this.img);
 }
 
 function Fillin(id, parent) {

@@ -3,3 +3,11 @@ div#content {
 	font-family: Arial;
 	font-size: 28pt;
 }
+
+.qc {
+	border: 1px solid black;
+}
+
+.disp {
+	padding: 15px;
+}

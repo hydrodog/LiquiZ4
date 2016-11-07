@@ -159,6 +159,7 @@ MC.prototype.draw = function(div) {
 		var x = document.createElement('div');
 		var xbutton = document.createElement('INPUT');
 		xbutton.type = 'Radio';
+		xbutton.name = "choice";
 		xbutton.label = this.choices[i];
 		x.appendChild(xbutton);
 		x.appendChild(document.createTextNode(this.choices[i]));

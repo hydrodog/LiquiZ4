@@ -94,25 +94,6 @@ Eqn.prototype.draw = function(div) {
 	app(div, this.s);
 }
 
-//pure audio player, no controls
-function Aud(file, id) {
-	this.audio = new Audio(file);
-}
-
-Aud.prototype.draw = function(div) { //do we want to display the audio?
-	this.audio.play();
-}
-
-function Img(file, id) {
-	this.id = id;
-	this.img = document.createElement("img");
-	this.img.src = file;
-	
-}
-
-Img.prototype.draw = function(div) {
-	div.appendChild(this.img);
-}
 
 function Fillin(id) { //parent) {
 	this.id = id;

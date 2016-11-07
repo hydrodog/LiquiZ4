@@ -130,24 +130,6 @@ Grid.prototype.draw = function(div) {
 	}
 }
 
-function MC(choices, id) {
-	this.id = id;
-	this.choices = choices;
-}
-
-MC.prototype.draw = function(div) {
-	for (var i = 0; i < this.choices.length; i++) {
-		var x = document.createElement('div');
-		var xbutton = document.createElement('INPUT');
-		xbutton.type = 'Radio';
-		xbutton.name = "choice";
-		xbutton.label = this.choices[i];
-		x.appendChild(xbutton);
-		x.appendChild(document.createTextNode(this.choices[i]));
-		div.appendChild(x);
-	}
-}
-
 function QC(parent, json) {
 	this.id = json.id;
 	this.title = json.title;

@@ -149,6 +149,34 @@ Grid.prototype.draw = function(div) {
 	}
 }
 
+function Matrix(rows, cols, id) {
+	this.id = id;
+	this.cols = cols;
+	this.rows = rows;
+}
+
+Matrix.prototype.draw = function(div) {
+	var size = '50px';
+	for(var i = 0; i < this.rows; i++) {
+		var row = document.createElement("div");
+		for(var j = 0; j<this.cols; j++) {
+			var box = document.createElement("div");
+			box.style.height = size;
+			box.style.width = size;
+			box.style.border = "1px solid black";
+			box.style.display = 'inline-block';
+			var inp = document.createElement('input');
+			inp.type = 'text';
+			inp.style.width = size;
+			inp.style.height = size;
+			inp.style.textAlign = 'center';
+			box.appendChild(inp);
+			row.appendChild(box);
+		}
+		div.appendChild(row);
+	}
+}
+
 function MC(choices, id) {
 	this.id = id;
 	this.choices = choices;
@@ -200,11 +228,16 @@ function QC(parent, json) {
 Util.subClass(Display, QC);
 
 QC.prototype.buildHeader = function() { //is this needed?
-
+	var header = document.createElement('div');
+	header.className = 'header';
+	var headerString = this.id + ': ' + this.title;
+	header.appendChild(document.createTextNode(headerString));
+	return header;
 }
 
 QC.prototype.draw = function() {  //need to pass in some kind of element to draw onto?
 	var d = this.buildHeader();
+	this.div.appendChild(d);
 	console.log(this);
 	for (var i = 0; i < this.comp.length; ++i)
 		this.comp[i].draw(this.div); //pass in div
@@ -285,7 +318,16 @@ function load() {
 	title: "Grid",
 	comp: [
 		["Instr", "Enter 1 through 5","5"],
-		[ "Grid", "5", "q1000"]
+		[ "Grid", 5, "q1000"]
+	]
+},
+
+{
+	id: "qc1003",
+	title: "Matrix",
+	comp: [
+		["Instr", "Enter any 3x3 matrix","5"],
+		[ "Matrix", 3,3, "q1000"]
 	]
 }
 	];

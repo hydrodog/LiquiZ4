@@ -1,0 +1,65 @@
+{
+	"id": "Quiz101",
+	"title": "LiquiZ Test1",
+	"policy": "dov",			//rather than specify all the rules for each quiz
+	"defaults": "std",			// so many things are default, why enter them?
+	"sourcedoc": ["doc/c++.pdf"],
+	"questions": [
+		{
+			"id": "qc101",
+			"comp": [
+				["p", "What is 2+2?"],
+				["q101", "mc", ["3","4", "5", "6"]  ],
+				["q102", "mcsel", [ {"ans":3}, {"ans": 4, "correct": 1 }]],
+				["q103", "mchor", [ {"ans":3, "resp": "res6"}, {"ans": 4, "correct": 1 }]]
+			]
+		},
+		{
+			"id": "qc102",
+			"comp": [
+				["inst", "Enter your honest opinions.  There are no right or wrong answers"],
+				["survey", "q104", "Likert5", [
+					"I like Chinese food",
+					"I like Korean food",
+					"I like Indian food",
+					"I got sick on sushi"
+				]]
+			]
+		},
+		{
+			"id": "qc103",
+			"comp": [
+				["inst", "Answer with your honest opinion, but if you have the wrong opinion you may be jailed or shot."],
+				["survey", "q105", ["love", "hate"], [
+					"Donald Trump",
+					"Hillary Clinton",
+					"Vladimir Putin",
+					"Joseph Stalin",
+					"Mahatma Ghandi",
+					"Atilla the Hun",
+					"Mao Tze Tung",
+					"Peter the Great",
+					"Henry the 8th"
+				]],
+			]
+		},
+		{
+			"id": "qc104",
+			"comp": [
+				["inst", "What namespace is used for all the code in the library"]
+				["fillin", "q106", ["std", "std::"], "namespace"]
+
+				
+			]
+		},
+		{
+			"id": "qc104",
+			"comp": [
+				["inst", "What is the result of an illegal cast to a constant"]
+				["fillin", "q106", ["std", "std::"], "97.5"]
+
+				
+			]
+		}
+	]
+}

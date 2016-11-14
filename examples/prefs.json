@@ -94,12 +94,14 @@
 	},
 	"licenses": {
 		"free": ["No license, do whatever you like", null],
-		"cc-by": ["Creative Commons with attribution", "https://en.wikipedia.org/wiki/Creative_Commons_license#Types_of_licenses",
+		"cc-by": ["Creative Commons with attribution", 
+			"https://en.wikipedia.org/wiki/Creative_Commons_license#Types_of_licenses",
+			"https://creativecommons.org/licenses"
 		],
-		"cc-sa": ["Creative Commons Share Alike", null, null],
+		"cc-sa": ["Creative Commons Share Alike", null, "https://creativecommons.org/licenses"],
 		"NC": ["Non-commercial only", null, null],
 		"ND": ["No Derivative Works (use verbatim only)", null, null],
-		"LGPL": ["GNU Lesser General Public License", "https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License", null],
+		"LGPL3": ["GNU Lesser General Public License", "https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License", "https://opensource.org/licenses/lgpl-3.0.html"],
 		"GPL": ["GNU Lesser General Public License", "https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License", null],
 	},
 	"rights": { // who gets to share my stuff by default?

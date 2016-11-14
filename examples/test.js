@@ -67,7 +67,7 @@ function Answer(id) {
 
 Util.subClass(Display, Answer);
 
-function StringAnswer(id, s) {
+function StringAnswer(s, id) {
 	this.id = id; // do in parent
 	this.s = s;
 }
@@ -76,7 +76,7 @@ StringAnswer.prototype.draw = function(div) {
 	app(div, this.s);
 }
 
-function Instr(id, s) {
+function Instr(s, id) {
 	this.id = id;
 	this.s = s;
 }
@@ -85,7 +85,7 @@ Instr.prototype.draw = function(div) {
 	app(div, this.s);
 }
 
-function Eqn(id, s) {
+function Eqn(s, id) {
 	this.id = id;
 	this.s = s;
 }
@@ -94,29 +94,40 @@ Eqn.prototype.draw = function(div) {
 	app(div, this.s);
 }
 
-//pure audio player, no controls
-function Aud(id, file) {
-	this.audio = new Audio(file);
+
+function Fillin(id) { //parent) {
+	this.id = id;
+	//pattern for regex
 }
 
-Aud.prototype.draw = function(div) { //do we want to display the audio?
-	this.audio.play();
+Fillin.prototype.draw = function(div) { 
+	var inp = document.createElement("input");
+	inp.type = "text";
+	inp.style.textAlign = 'center';
+	div.appendChild(inp);
 }
 
-function Img(id, file) {
-	this.src = file;
+function Grid(length, id) {
+	this.id = id;
+	this.length = length;
 }
 
-Img.prototype.draw = function() {
-	
-}
-
-function Fillin(id, parent) {
-
-}
-
-Fillin.prototype.draw = function() { 
-
+Grid.prototype.draw = function(div) {
+	var size = '50px';
+	for(var i = 0; i < this.length; i++) {
+		var box = document.createElement("div");
+		box.style.height = size;
+		box.style.width = size;
+		box.style.border = "1px solid black";
+		box.style.display = 'inline-block';
+		var inp = document.createElement('input');
+		inp.type = 'text';
+		inp.style.width = size;
+		inp.style.height = size;
+		inp.style.textAlign = 'center';
+		box.appendChild(inp);
+		div.appendChild(box);
+	}
 }
 
 function QC(parent, json) {
@@ -126,10 +137,24 @@ function QC(parent, json) {
 	this.points = (typeof json.points === 'undefined') ? 1 : json.points;
 	this.level = (typeof json.level === 'undefined') ? 1 : json.level;
 	this.md(parent);
+	this.div.className = 'qc';
 	this.comp = [];
 	for (var i = 0; i < json.comp.length; ++i) {
 		var comp = json.comp[i];
-		var c = "new " + comp[0] + "('" + comp[2] + "' , '" + comp[1] + "')";
+		var c = "new " + comp[0] + "("; 
+		for(var j = 1;  j < comp.length; j++) {
+			var value = comp[j];
+			if (typeof(value) === 'string')
+				c += "'" + comp[j] + "'";
+			else if(comp[j].constructor === Array) 
+				c += "[" + comp[j] + "]";
+			else
+				c += comp[j];
+			if(j != comp.length-1) 
+				c += ', ';
+		}
+		c += ')';		
+		//c = "new " + comp[0] + "(";  + comp[2] + "' , '" + comp[1] + "')"; //need to loop this for more than 3 elements in array?
 		console.log(c);
 		this.comp.push(eval(c));
 	}
@@ -154,7 +179,7 @@ function Quiz(parent, json) {
 	for (var k in json) {
 		this[k] = json[k];
 	}
-	this.md(parent);
+		this.md(parent);
 	//parent.appendChild(this.div);
 	this.policy = prefs.getPolicy(json);
 	for (var i = 0; i < this.questions.length; ++i) {
@@ -186,6 +211,12 @@ Quiz.prototype.drawQuiz = function() {
 function load() {
 	var p = document.getElementById("content");
 	console.log(p);
+	
+	var test = [1,2,3,4];
+	console.log(typeof(test));
+	console.log(test);
+	
+	
 	var quest = [
 {
 	id: "qc1000",
@@ -195,7 +226,8 @@ function load() {
 		["Eqn", "2+2", "2"],
 //		["Instr", "?", "1"],
 		["Aud", "great.mp3","3"],
-		["Img", "cat.jpg","4"]
+		["Img", "cat.jpg","4"],
+		["MC", [1,2,3,4], "7"]
 	]
 },
 {
@@ -207,10 +239,18 @@ function load() {
 //		["Instr", "?","5"],
 		["Aud", "great.mp3", "7"],
 		["Img", "cat.jpg","8"],
-		[ "Fillin", "q1000","9"]
+		[ "Fillin", "q1000"]
+	]
+},
+
+{
+	id: "qc1002",
+	title: "Grid",
+	comp: [
+		["Instr", "Enter 1 through 5","5"],
+		[ "Grid", "5", "q1000"]
 	]
 }
-
 	];
 	var json = {
   		title: "test",

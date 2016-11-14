@@ -94,25 +94,6 @@ Eqn.prototype.draw = function(div) {
 	app(div, this.s);
 }
 
-//pure audio player, no controls
-function Aud(file, id) {
-	this.audio = new Audio(file);
-}
-
-Aud.prototype.draw = function(div) { //do we want to display the audio?
-	this.audio.play();
-}
-
-function Img(file, id) {
-	this.id = id;
-	this.img = document.createElement("img");
-	this.img.src = file;
-	
-}
-
-Img.prototype.draw = function(div) {
-	div.appendChild(this.img);
-}
 
 function Fillin(id) { //parent) {
 	this.id = id;
@@ -174,24 +155,6 @@ Matrix.prototype.draw = function(div) {
 			row.appendChild(box);
 		}
 		div.appendChild(row);
-	}
-}
-
-function MC(choices, id) {
-	this.id = id;
-	this.choices = choices;
-}
-
-MC.prototype.draw = function(div) {
-	for (var i = 0; i < this.choices.length; i++) {
-		var x = document.createElement('div');
-		var xbutton = document.createElement('INPUT');
-		xbutton.type = 'Radio';
-		xbutton.name = "choice";
-		xbutton.label = this.choices[i];
-		x.appendChild(xbutton);
-		x.appendChild(document.createTextNode(this.choices[i]));
-		div.appendChild(x);
 	}
 }
 

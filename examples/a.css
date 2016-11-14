@@ -1,5 +1,4 @@
 div#content {
-	background-color: #f00;
 	font-family: Arial;
 	font-size: 28pt;
 }
@@ -13,8 +12,15 @@ div.header {
 
 .qc {
 	border: 1px solid black;
+    padding: 20px;
+    margin: 20px;
 }
 
 .disp {
 	padding: 15px;
+}
+
+.qc.Instr {
+    
+    font-size: 32px
 }

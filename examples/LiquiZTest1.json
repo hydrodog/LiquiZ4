@@ -18,7 +18,7 @@
 			"id": "qc102",
 			"comp": [
 				["inst", "Enter your honest opinions.  There are no right or wrong answers"],
-				["survey", "q104", "Likert5", [
+				["survey", "q104", {"id": "Likert5", [    ]}, [
 					"I like Chinese food",
 					"I like Korean food",
 					"I like Indian food",
@@ -56,10 +56,18 @@
 			"id": "qc104",
 			"comp": [
 				["inst", "What is the result of an illegal cast to a constant"]
-				["fillin", "q106", ["std", "std::"], "97.5"]
-
-				
+				["fillin", "q106", ["std", "std::"], "illegalcast"] // in Hamstudy this is a number
+				// it is a mistake to use numeric ids, this is only for laws which change infrequently
+				// a #uniquesymbol works much better
+			]
+		},
+				{
+			"id": "qc105",
+			"comp": [
+				["inst", "What is the mass of 3.951 liters of water to 3 significant figures?"]
+				["regex", "q107", ["[:3sig:][:mass:]"], "97.5"]				
 			]
 		}
+
 	]
 }

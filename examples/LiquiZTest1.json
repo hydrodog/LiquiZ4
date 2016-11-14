@@ -101,6 +101,22 @@
 				]
 			]
 		},
+		{
+			"comp": [
+				["inst", "Complete the missing code"],
+				["cloze", 
+					["[[public]] [[class]] A {\n  public [[static]] void main(String[] args) {\n    System.out.println(\"test\");\n  }\n}\n"
+					]
+				]
+			]
+		},
+		{
+			"comp": [
+				["inst", "Complete the following circuit so the LED lights up without burning out"],
+				["diagram", "elec", "r(220,0,0,0);b(6,10,0,0);led(20,0,0);"]
+			]
+		},
+
 
 	]
 }

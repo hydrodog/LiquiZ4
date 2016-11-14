@@ -1,0 +1,8 @@
+Goals for LiquiZ
+
+1. Design surveys quickly and easily.  We currently support Likert scales, would also like to be able to accept answers 0 to 100 or 0 to 10, perhaps with scroll-bar type control?
+2. Autogenerate links to a master document for study.  Example: Ham license exam refers back to FCC part 97 rules.
+3. Have community-generated quizzes where anyone can edit answers and explanations a la hamstudy.org
+4. Build a drawing engine so that diagrams can be part of the answer.
+5. Define an XML standard for quizzes that is a lot better than the current IMS global one.
+6. Support randomized responses including any display element (audio, video, text, etc).

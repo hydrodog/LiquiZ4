@@ -3,6 +3,13 @@ div#content {
 	font-size: 28pt;
 }
 
+div.header {
+	background-color: #FF7272;
+	font-family: Arial;
+	font-size: 28pt;
+	border: 1px solid black;
+}
+
 .qc {
 	border: 1px solid black;
     padding: 20px;

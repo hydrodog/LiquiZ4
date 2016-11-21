@@ -10,8 +10,8 @@
 			"comp": [
 				["p", "What is 2+2?"],
 				["q101", "mc", ["3","4", "5", "6"]  ],
-				["q102", "mcsel", [ {"ans":3}, {"ans": 4, "correct": 1 }]],
-				["q103", "mchor", [ {"ans":3, "resp": "res6"}, {"ans": 4, "correct": 1 }]]
+				["q102", "mcsel", [ {"ans":3}, {"ans": 4, "correct": 1 }]], //select dropdown
+				["q103", "mchor", [ {"ans":3, "resp": "res6"}, {"ans": 4, "correct": 1 }]] //horizontal display
 			]
 		},
 		{

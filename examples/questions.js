@@ -19,6 +19,28 @@ MC.prototype.draw = function(div) {
 	}
 }
 
+//testing out new MC structure
+function MCtest(choices, id) {
+	this.id = id;
+	this.choices = choices;
+	
+}
+
+MCtest.prototype.draw = function(div) {
+	for (var i = 0; i < this.choices.length; i++) {
+		var x = document.createElement('div');
+        var label = document.createElement('label');
+		var xbutton = document.createElement('INPUT');
+		xbutton.type = 'Radio';
+		xbutton.name = "choice";
+		xbutton.label = this.choices[i]["ans"];
+        label.appendChild(xbutton);
+		label.appendChild(document.createTextNode(this.choices[i]["ans"]));
+        x.appendChild(label);
+		div.appendChild(x);
+	}
+}
+
 function Matrix(rows, cols, id) {
 	this.id = id;
 	this.cols = cols;
@@ -80,4 +102,42 @@ Fillin.prototype.draw = function(div) {
 	inp.type = "text";
 	inp.style.textAlign = 'center';
 	div.appendChild(inp);
+}
+
+function Survey(id, choices, terms) {
+	this.id = id;
+	this.terms = terms;
+	if(choices == "Likert5") {
+		this.choices = [
+		  	"Strongly Agree",
+          	"Agree",
+          	"Neutral",
+          	"Disagree",
+          	"Strongly Disagree"]
+	}
+	else
+		this.choices = choices;
+}
+
+Survey.prototype.draw = function(div) {
+	for(var j = 0; j < this.terms.length; j++) {
+		var termBox = document.createElement('div');
+		//console.log(this.terms);
+		termBox.appendChild(document.createTextNode(this.terms[j]));
+		for (var i = 0; i < this.choices.length; i++) {
+			var x = document.createElement('div');
+			var label = document.createElement('label');
+			var xbutton = document.createElement('INPUT');
+			xbutton.type = 'Radio';
+			xbutton.name = "choice";
+			xbutton.label = this.choices[i];
+			label.appendChild(xbutton);
+			label.appendChild(document.createTextNode(this.choices[i]));
+			x.appendChild(label);
+			x.style.display = "inline-block";
+			termBox.appendChild(x);
+		}
+		div.appendChild(termBox);
+	}
+	
 }

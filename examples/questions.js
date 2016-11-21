@@ -19,6 +19,25 @@ MC.prototype.draw = function(div) {
 	}
 }
 
+function MCSEL(choices, id) {
+	this.id = id;
+	this.choices = choices;
+}
+
+MCSEL.prototype.draw = function(div) {
+	var x = document.createElement('div');
+    var selectList = document.createElement("select");
+    
+	for (var i = 0; i < this.choices.length; i++) {
+        var option = document.createElement('option');
+		option.value = this.choices[i];
+        option.text = this.choices[i];
+        selectList.appendChild(option);
+	}
+    x.appendChild(selectList);
+    div.appendChild(x);
+}
+
 function Matrix(rows, cols, id) {
 	this.id = id;
 	this.cols = cols;

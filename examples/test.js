@@ -228,7 +228,20 @@ function load() {
 		["Instr", "Enter any 3x3 matrix","5"],
 		[ "Matrix", 3,3, "q1000"]
 	]
-}
+},
+
+{
+    id: "qc1004",
+	title: "Addition",
+	comp: [
+		["Instr", "What is ", "1"],
+		["Eqn", "2+2", "2"],
+//		["Instr", "?", "1"],
+		["Aud", "great.mp3","3"],
+		["Img", "cat.jpg","4"],
+		["MCSEL", [1,2,3,4], "7"]
+	]
+},
 	];
 	var json = {
   		title: "test",

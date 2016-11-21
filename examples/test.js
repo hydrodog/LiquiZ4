@@ -108,10 +108,13 @@ function QC(parent, json) {
 		var c = "new " + comp[0] + "("; 
 		for(var j = 1;  j < comp.length; j++) {
 			var value = comp[j];
+			console.log(value);
 			if (typeof(value) === 'string')
 				c += "'" + comp[j] + "'";
-			else if(comp[j].constructor === Array) 
-				c += "[" + comp[j] + "]";
+			else if(comp[j].constructor === Array) {
+				console.log(JSON.stringify(comp[j]));
+				c+= JSON.stringify(comp[j]);
+			}
 			else
 				c += comp[j];
 			if(j != comp.length-1) 
@@ -213,11 +216,41 @@ function load() {
 },
 
 {
+	id: "qc101",
+	title: "Multiplication",
+	comp: [
+		["Instr", "What is ","5"],
+		["Eqn", "3*4", "6"],
+//		["Instr", "?","5"],
+		["Aud", "great.mp3", "7"],
+		["Img", "cat.jpg","8"],
+		["MCtest", [ {"ans":9, "resp": "res6"}, {"ans": 12, "correct": 1 }]]
+	]
+},
+
+
+
+
+{
 	id: "qc1002",
 	title: "Grid",
 	comp: [
 		["Instr", "Enter 1 through 5","5"],
 		[ "Grid", 5, "q1000"]
+	]
+},
+
+{
+	id: "qc102",
+	title: "Survey",
+	comp: [
+		["Instr", "Enter your honest opinions.  There are no right or wrong answers"],
+		["Survey", "q104", "Likert5", [
+			"I like Chinese food",
+			"I like Korean food",
+			"I like Indian food",
+			"I got sick on sushi"
+		]]
 	]
 },
 

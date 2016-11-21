@@ -141,3 +141,45 @@ Survey.prototype.draw = function(div) {
 	}
 	
 }
+
+function Likert5(questions, id) {
+	this.id = id;
+	this.questions = questions;
+}
+
+Likert5.prototype.draw = function(div) {
+	var scale = ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"];
+	var question3 = document.createElement("div");
+	var tbl = document.createElement("table");
+	//create header with sclae
+	var header = document.createElement("tr");
+	var th = document.createElement("th");
+	//blank space for question
+	th.appendChild(document.createTextNode(""));
+	header.appendChild(th);
+	for (var i = 0; i < scale.length; i++){
+		th = document.createElement("th");
+		th.appendChild(document.createTextNode(scale[i]));
+		header.appendChild(th);
+	}
+	tbl.appendChild(header);
+	//for each question, create a new row
+	for (var j = 0; j < questions.length; j++){
+		var trow = document.createElement("tr");
+		var td = document.createElement("td");
+		td.appendChild(document.createTextNode(questions[j]));
+		trow.appendChild(td);
+		//for each question row, need a new td for question or button
+		for (var x = 0; x < scale.length; x++){
+			td = document.createElement("td");
+			var checkbox = document.createElement("input");
+			checkbox.type = "checkbox";
+			td.appendChild(checkbox);
+			trow.appendChild(td);
+			tbl.appendChild(trow);
+		}
+	}
+	question3.appendChild(tbl);
+	div.appendChild(question3);
+}
+

@@ -1,12 +1,16 @@
 {
-	"id": "Quiz101",
+//	"id": "Quiz101", If we leave off the id, it should be automatically assigned.
+// note that the space for quiz ids is separate from the space for question containers and questions
+
 	"title": "LiquiZ Test1",
 	"policy": "dov",			//rather than specify all the rules for each quiz
 	"defaults": "std",			// so many things are default, why enter them?
 	"sourcedoc": ["doc/c++.pdf"],
 	"questions": [
 		{
-			"id": "qc101",
+//			"id": "qc101",   // if id is present, then that is the id of the container.
+// if not, then your code should create a unique one./
+// in general, in a huge database of 
 			"comp": [
 				["p", "What is 2+2?"],
 				["q101", "mc", ["3","4", "5", "6"]  ],
@@ -15,10 +19,9 @@
 			]
 		},
 		{
-			"id": "qc102",
 			"comp": [
 				["inst", "Enter your honest opinions.  There are no right or wrong answers"],
-				["survey", "q104", "Likert5", [
+				["survey", "q104", {"id": "Likert5", [    ]}, [
 					"I like Chinese food",
 					"I like Korean food",
 					"I like Indian food",
@@ -27,7 +30,6 @@
 			]
 		},
 		{
-			"id": "qc103",
 			"comp": [
 				["inst", "Answer with your honest opinion, but if you have the wrong opinion you may be jailed or shot."],
 				["survey", "q105", ["love", "hate"], [
@@ -44,7 +46,6 @@
 			]
 		},
 		{
-			"id": "qc104",
 			"comp": [
 				["inst", "What namespace is used for all the code in the library"]
 				["fillin", "q106", ["std", "std::"], "namespace"]
@@ -53,13 +54,69 @@
 			]
 		},
 		{
-			"id": "qc104",
+			"points": 3,
+			"level": 2, // if level is undefined, default to quiz.level.  If that
+			// is undefined, default to user's default level?
 			"comp": [
 				["inst", "What is the result of an illegal cast to a constant"]
-				["fillin", "q106", ["std", "std::"], "97.5"]
-
-				
+				["fillin", "q106", ["std", "std::"], "illegalcast"] // in Hamstudy this is a number
+				// it is a mistake to use numeric ids, this is only for laws which change infrequently
+				// a #uniquesymbol works much better
 			]
-		}
+		},
+		{
+			"id": "qc105",
+			"comp": [
+				["inst", "What is the mass of 3.951 liters of water to 3 significant figures?"]
+				["regex", "q107", ["[:3sig:][:mass:]"], ["3.95kg", "3.95kilogram"], ["3.95k", "3.951kg"], "mass"]
+				// there is a great case for regex in general.  This is not it.
+				//  The above example shows how to build a regex question complete
+				// with pattern, positive examples to verify, and negative.  but this is a lousy case for regex.
+				// I could just do a number.  What is a good example for a regex question for which regex is an actual advantage?
+			]
+		},
+		{
+			"comp": [
+				["def", "E=.5*m*v*v"],// internal Javascript used to compute the answer
+				["inst", "What is the energy of an $m$ kg car moving along the highway at $v$ m/s?"],
+				["num", null, ["$E$", 1]] // id is null also requests new id for question
+			]
+		},
+		{
+			"comp": [
+				["rand", "I", 1, 10],
+				["rand", "R", 10, 10, 100],
+				["def", "V=I*R"],// internal Javascript used to compute the answer
+				["solve", null, "V,I,R"],
+			]
+		},
+		{
+			"comp": [
+				["inst", "Determine the output of the following code"],
+				["code", 
+					["int a = $r1$ / $r2$;			//$ans=int32(r1/r2)$",
+					 "int b = $r1$ / $r2$ * $r2$;	//$ans=int32(r1/r2)*r2$",
+					 "float c = $r1$ / $r2$ * $r2$; //$ans=int32(r1/r2)*r2$"
+					]
+				]
+			]
+		},
+		{
+			"comp": [
+				["inst", "Complete the missing code"],
+				["cloze", 
+					["[[public]] [[class]] A {\n  public [[static]] void main(String[] args) {\n    System.out.println(\"test\");\n  }\n}\n"
+					]
+				]
+			]
+		},
+		{
+			"comp": [
+				["inst", "Complete the following circuit so the LED lights up without burning out"],
+				["diagram", "elec", "r(220,0,0,0);b(6,10,0,0);led(20,0,0);"]
+			]
+		},
+
+
 	]
 }

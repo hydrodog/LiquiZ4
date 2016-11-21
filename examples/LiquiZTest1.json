@@ -21,7 +21,7 @@
 		{
 			"comp": [
 				["inst", "Enter your honest opinions.  There are no right or wrong answers"],
-				["survey", "q104", {"id": "Likert5", [    ]}, [
+				["survey", "q104", {"id": "Likert5", "choices": [] }, [
 					"I like Chinese food",
 					"I like Korean food",
 					"I like Indian food",
@@ -32,7 +32,7 @@
 		{
 			"comp": [
 				["inst", "Answer with your honest opinion, but if you have the wrong opinion you may be jailed or shot."],
-				["survey", "q105", ["love", "hate"], [
+				["survey", "q105",{"id": "custom" , "choices": ["love", "hate"]}, [
 					"Donald Trump",
 					"Hillary Clinton",
 					"Vladimir Putin",

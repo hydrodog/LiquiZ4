@@ -129,7 +129,7 @@ Survey.prototype.draw = function(div) {
 			var label = document.createElement('label');
 			var xbutton = document.createElement('INPUT');
 			xbutton.type = 'Radio';
-			xbutton.name = "choice";
+			xbutton.name = this.terms[j];
 			xbutton.label = this.choices[i];
 			label.appendChild(xbutton);
 			label.appendChild(document.createTextNode(this.choices[i]));

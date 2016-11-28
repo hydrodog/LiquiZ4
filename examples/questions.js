@@ -142,9 +142,13 @@ Survey.prototype.draw = function(div) {
 	for(var j = 0; j < this.terms.length; j++) {
 		var termBox = document.createElement('div');
 		//console.log(this.terms);
+        termBox.className = "SurveyContainer";
 		termBox.appendChild(document.createTextNode(this.terms[j]));
+        var surveyChoiceList = document.createElement('div');
+        surveyChoiceList.className = "ChoiceContainer";
 		for (var i = 0; i < this.choices.length; i++) {
 			var x = document.createElement('div');
+            x.className = "Choice";
 			var label = document.createElement('label');
 			var xbutton = document.createElement('INPUT');
 			xbutton.type = 'Radio';
@@ -154,8 +158,9 @@ Survey.prototype.draw = function(div) {
 			label.appendChild(document.createTextNode(this.choices[i]));
 			x.appendChild(label);
 			x.style.display = "inline-block";
-			termBox.appendChild(x);
+			surveyChoiceList.appendChild(x);
 		}
+        termBox.appendChild(surveyChoiceList);
 		div.appendChild(termBox);
 	}
 	

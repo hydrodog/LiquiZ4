@@ -32,7 +32,18 @@ MC.prototype.draw = function(div) {
 
 function MCSEL(choices, id) {
 	this.id = id;
-	this.choices = choices;
+	this.choices = [];
+	this.responses = [];
+	for(var i = 0; i < choices.length; i++) {
+		console.log(choices[i]["ans"]);
+		this.choices[i] = choices[i]["ans"];
+		if (typeof(choices[i]["resp"]) != 'undefined')
+			this.responses[i]  = choices[i]["resp"];
+		else
+			this.responses[i] = "";
+		if(choices[i]["correct"] = 1)
+			this.correct = i;		
+	}
 }
 
 MCSEL.prototype.draw = function(div) {

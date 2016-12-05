@@ -271,7 +271,8 @@ function load() {
 		["Eqn", "2+2", "2"],
 //		["Instr", "?", "1"],
 		["Aud", "great.mp3","3"],
-		["MCSEL", [1,2,3,4], "7"]
+		["MCSEL", [ {"ans":1, "resp": "res6"}, {"ans": 2 },
+			{"ans":3, "resp": "res6"}, {"ans": 4, "correct": 1}], "7"]
 	]
 },
 	];

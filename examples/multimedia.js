@@ -17,5 +17,9 @@ function Img(file, id) {
 }
 
 Img.prototype.draw = function(div) {
-	div.appendChild(this.img);
+	this.img.setAttribute('draggable','false');
+	var imgDiv = document.createElement('div');
+	imgDiv.className += 'imgDiv';
+	imgDiv.appendChild(this.img);
+	div.appendChild(imgDiv);
 }

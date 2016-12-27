@@ -275,6 +275,15 @@ function load() {
 		["MCSEL", [1,2,3,4], "7"]
 	]
 },
+{
+    id: "qc1005",
+	title: "Drag and Drop",
+	comp: [
+		["Instr", "Locate the parts of the cat ",'4'],
+		["Img", "cat.jpg","4"],
+		["dragDrop", [ {"Ear": {"left":260,"top":3650}}, {"Eye": {"left":300,"top":3760}},{"Nose":{"left":330,"top":3800}},{"Tongue":{"left":330,"top":3860}}], "7"]
+	]
+},
 	];
 	var json = {
   		title: "test",

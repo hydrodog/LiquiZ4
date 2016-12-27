@@ -24,3 +24,29 @@ div.header {
     
     font-size: 32px
 }
+
+.dragDropOption {
+	background-color: white;
+	font-size: 18px;
+	padding: 5px;
+	cursor:move;
+	position:relative; /* important (all position that's not `static`) */
+	border-radius: 3px;
+	border: 1px solid black;
+}
+
+.container .dragDropOption {
+	margin-right: 5px;
+}
+
+.dragdropLocation {
+	background-color: white;
+	min-width:20px;
+	min-height:20px;
+	border-radius: 3px;
+	border: 1px solid black;
+}
+
+.container {
+	display: flex;
+}

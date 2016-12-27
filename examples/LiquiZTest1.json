@@ -13,9 +13,9 @@
 // in general, in a huge database of 
 			"comp": [
 				["p", "What is 2+2?"],
-				["q101", "mc", ["3","4", "5", "6"]  ],
-				["q102", "mcsel", [ {"ans":3}, {"ans": 4, "correct": 1 }]], //select dropdown
-				["q103", "mchor", [ {"ans":3, "resp": "res6"}, {"ans": 4, "correct": 1 }]] //horizontal display
+				["mc", "q101", ["3","4", "5", "6"]  ],
+				["mcsel", [ {"ans":3}, {"ans": 4, "correct": 1 }]], //select dropdown
+				["mchor", "q103", [ {"ans":3, "resp": "res6"}, {"ans": 4, "correct": 1 }]] //horizontal display
 			]
 		},
 		{
@@ -48,9 +48,7 @@
 		{
 			"comp": [
 				["inst", "What namespace is used for all the code in the library"],
-				["fillin", "q106", ["std", "std::"], "namespace"]
-
-				
+				["fillin", "q106", ["std", "std::"], "namespace"]				
 			]
 		},
 		{
@@ -65,7 +63,7 @@
 			]
 		},
 		{
-			"id": "qc105",
+			"id": "qc105", // if absent
 			"comp": [
 				["inst", "What is the mass of 3.951 liters of water to 3 significant figures?"],
 				["regex", "q107", ["[:3sig:][:mass:]"], ["3.95kg", "3.95kilogram"], ["3.95k", "3.951kg"], "mass"]
@@ -86,8 +84,23 @@
 			"comp": [
 				["rand", "I", 1, 10],
 				["rand", "R", 10, 10, 100],
-				["def", "V=I*R"],// internal Javascript used to compute the answer
+				["def", "V=I*R"],// Javascript used to compute the answer when creating the question bank
 				["solve", null, "V,I,R"]
+			]
+		},
+		{
+			"comp": [
+				["inst", "Show the result of matrix multiplication"],
+				["grid",  3, 2, [1, 2, 3, 4, 5, 6]],
+				["text", "*"],
+				["grid",  2, 3, [2, 2, 3, 3, 6, 6]],
+				["mat", null, 2, 2]
+			]
+		},
+		{
+			"comp": [
+				["inst", "Complete the following code to calculate n factorial"],
+				["code", null, "double fact(int n) {\n\n\n\n\n}"]
 			]
 		},
 		{

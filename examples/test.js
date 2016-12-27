@@ -198,8 +198,8 @@ function load() {
 		["Eqn", "2+2", "2"],
 //		["Instr", "?", "1"],
 		["Aud", "great.mp3","3"],
-		["Img", "cat.jpg","4"],
-		["MC", [1,2,3,4], "7"]
+		["MC", [ {"ans":3, "resp": "res6"}, {"ans": 4, "correct": 1 },
+			{"ans":5, "resp": "res6"}, {"ans": 6}], "7"]
 	]
 },
 {
@@ -223,8 +223,7 @@ function load() {
 		["Eqn", "3*4", "6"],
 //		["Instr", "?","5"],
 		["Aud", "great.mp3", "7"],
-		["Img", "cat.jpg","8"],
-		["MCtest", [ {"ans":9, "resp": "res6"}, {"ans": 12, "correct": 1 }]]
+		["MC", [ {"ans":9}, {"ans": 12}]]
 	]
 },
 
@@ -263,6 +262,7 @@ function load() {
 	]
 },
 
+
 {
     id: "qc1004",
 	title: "Addition",
@@ -271,8 +271,8 @@ function load() {
 		["Eqn", "2+2", "2"],
 //		["Instr", "?", "1"],
 		["Aud", "great.mp3","3"],
-		["Img", "cat.jpg","4"],
-		["MCSEL", [1,2,3,4], "7"]
+		["MCSEL", [ {"ans":1, "resp": "res6"}, {"ans": 2 },
+			{"ans":3, "resp": "res6"}, {"ans": 4, "correct": 1}], "7"]
 	]
 },
 {

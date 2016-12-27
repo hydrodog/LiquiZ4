@@ -1,7 +1,18 @@
 /*display elements like multiple choice, fillin, etc*/
 function MC(choices, id) {
 	this.id = id;
-	this.choices = choices;
+	this.choices = [];
+	this.responses = [];
+	for(var i = 0; i < choices.length; i++) {
+		console.log(choices[i]["ans"]);
+		this.choices[i] = choices[i]["ans"];
+		if (typeof(choices[i]["resp"]) != 'undefined')
+			this.responses[i]  = choices[i]["resp"];
+		else
+			this.responses[i] = "";
+		if(choices[i]["correct"] = 1)
+			this.correct = i;		
+	}	
 }
 
 MC.prototype.draw = function(div) {
@@ -21,7 +32,18 @@ MC.prototype.draw = function(div) {
 
 function MCSEL(choices, id) {
 	this.id = id;
-	this.choices = choices;
+	this.choices = [];
+	this.responses = [];
+	for(var i = 0; i < choices.length; i++) {
+		console.log(choices[i]["ans"]);
+		this.choices[i] = choices[i]["ans"];
+		if (typeof(choices[i]["resp"]) != 'undefined')
+			this.responses[i]  = choices[i]["resp"];
+		else
+			this.responses[i] = "";
+		if(choices[i]["correct"] = 1)
+			this.correct = i;		
+	}
 }
 
 MCSEL.prototype.draw = function(div) {
@@ -36,28 +58,6 @@ MCSEL.prototype.draw = function(div) {
 	}
     x.appendChild(selectList);
     div.appendChild(x);
-}
-
-//testing out new MC structure
-function MCtest(choices, id) {
-	this.id = id;
-	this.choices = choices;
-	
-}
-
-MCtest.prototype.draw = function(div) {
-	for (var i = 0; i < this.choices.length; i++) {
-		var x = document.createElement('div');
-        var label = document.createElement('label');
-		var xbutton = document.createElement('INPUT');
-		xbutton.type = 'Radio';
-		xbutton.name = "choice";
-		xbutton.label = this.choices[i]["ans"];
-        label.appendChild(xbutton);
-		label.appendChild(document.createTextNode(this.choices[i]["ans"]));
-        x.appendChild(label);
-		div.appendChild(x);
-	}
 }
 
 function Matrix(rows, cols, id) {
@@ -142,9 +142,13 @@ Survey.prototype.draw = function(div) {
 	for(var j = 0; j < this.terms.length; j++) {
 		var termBox = document.createElement('div');
 		//console.log(this.terms);
+        termBox.className = "SurveyContainer";
 		termBox.appendChild(document.createTextNode(this.terms[j]));
+        var surveyChoiceList = document.createElement('div');
+        surveyChoiceList.className = "ChoiceContainer";
 		for (var i = 0; i < this.choices.length; i++) {
 			var x = document.createElement('div');
+            x.className = "Choice";
 			var label = document.createElement('label');
 			var xbutton = document.createElement('INPUT');
 			xbutton.type = 'Radio';
@@ -154,8 +158,9 @@ Survey.prototype.draw = function(div) {
 			label.appendChild(document.createTextNode(this.choices[i]));
 			x.appendChild(label);
 			x.style.display = "inline-block";
-			termBox.appendChild(x);
+			surveyChoiceList.appendChild(x);
 		}
+        termBox.appendChild(surveyChoiceList);
 		div.appendChild(termBox);
 	}
 	

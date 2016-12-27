@@ -281,7 +281,7 @@ function load() {
 	comp: [
 		["Instr", "Locate the parts of the cat ",'4'],
 		["Img", "cat.jpg","4"],
-		["dragDrop", [ {"Ear": {"left":260,"top":3650}}, {"Eye": {"left":300,"top":3760}},{"Nose":{"left":330,"top":3800}},{"Tongue":{"left":330,"top":3860}}], "7"]
+		["dragDrop", [ {"Ear": {"left":260,"top":2250}}, {"Eye": {"left":300,"top":2360}},{"Nose":{"left":330,"top":2400}},{"Tongue":{"left":330,"top":2460}}], "7"]
 	]
 },
 	];

@@ -1,3 +1,9 @@
+body{
+    background-color: #efefef;
+    
+}
+
+
 div#content {
 	font-family: Arial;
 	font-size: 28pt;
@@ -6,7 +12,7 @@ div#content {
 div.header {
 	background-color: #FF7272;
 	font-family: Arial;
-	font-size: 28pt;
+	font-size: 28px;
 	border: 1px solid black;
 }
 
@@ -14,6 +20,7 @@ div.header {
 	border: 1px solid black;
     padding: 20px;
     margin: 20px;
+    background-color: white;
 }
 
 .disp {
@@ -22,5 +29,18 @@ div.header {
 
 .qc.Instr {
     
-    font-size: 32px
+    font-size: 32px;
+}
+
+.SurveyContainer {
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+.ChoiceContainer {
+    padding-top: 5px;
+}
+.Choice{
+    font-size: 10px;
+    display: inline-block;
 }

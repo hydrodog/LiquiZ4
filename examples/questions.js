@@ -229,7 +229,6 @@ dragDrop.prototype.draw = function(div) {
 			termBox.className += "dragDropOption";
 			termBox.setAttribute("draggable", "true");
 			termBox.setAttribute("ondragstart","drag(event)");
-			termBox.setAttribute("id","term" + i);
 			termBox.appendChild(document.createTextNode(j));
 			optionsBox.appendChild(termBox);
 			//create location divs
@@ -238,7 +237,6 @@ dragDrop.prototype.draw = function(div) {
 			answerDiv.className += "dragdropLocation";
 			answerDiv.setAttribute("ondrop","drop(event)");
 			answerDiv.setAttribute("ondragover","allowDrop(event)");
-			answerDiv.setAttribute("id","location" + i);
 			answerDiv.setAttribute("style","position:absolute; "+ coord);
 			imgDiv[0].appendChild(answerDiv);
 			

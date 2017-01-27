@@ -228,6 +228,7 @@ dragDrop.prototype.draw = function(div) {
 			var termBox = document.createElement('div');
 			termBox.className += "dragDropOption";
 			termBox.setAttribute("draggable", "true");
+			termBox.setAttribute("id","term" + i);
 			termBox.setAttribute("ondragstart","drag(event)");
 			termBox.appendChild(document.createTextNode(j));
 			optionsBox.appendChild(termBox);
@@ -237,6 +238,8 @@ dragDrop.prototype.draw = function(div) {
 			answerDiv.className += "dragdropLocation";
 			answerDiv.setAttribute("ondrop","drop(event)");
 			answerDiv.setAttribute("ondragover","allowDrop(event)");
+			/*not including answer id bc then user could match numbers to figure out answers*/ 
+			//answerDiv.setAttribute("id","location" + i);
 			answerDiv.setAttribute("style","position:absolute; "+ coord);
 			imgDiv[0].appendChild(answerDiv);
 			

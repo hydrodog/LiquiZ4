@@ -211,7 +211,7 @@ function load() {
 //		["Instr", "?","5"],
 		["Aud", "great.mp3", "7"],
 		["Img", "cat.jpg","8"],
-		[ "Fillin", "q1000"]
+		[ "Fillin", ["12","12.0"], "q1000"]
 	]
 },
 
@@ -257,8 +257,8 @@ function load() {
 	id: "qc1003",
 	title: "Matrix",
 	comp: [
-		["Instr", "Enter any 3x3 matrix","5"],
-		[ "Matrix", 3,3, "q1000"]
+		["Instr", "Enter 3x3 matrix from 1 through 9","5"],
+		[ "Matrix", 3,3, [1,2,3,4,5,6,7,8,9], "q1000"]
 	]
 },
 

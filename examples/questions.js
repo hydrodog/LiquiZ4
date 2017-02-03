@@ -60,10 +60,11 @@ MCSEL.prototype.draw = function(div) {
     div.appendChild(x);
 }
 
-function Matrix(rows, cols, id) {
+function Matrix(rows, cols, ans, id) {
 	this.id = id;
 	this.cols = cols;
 	this.rows = rows;
+	this.ans = ans;
 }
 
 Matrix.prototype.draw = function(div) {
@@ -111,8 +112,9 @@ Grid.prototype.draw = function(div) {
 	}
 }
 
-function Fillin(id) { //parent) {
+function Fillin(ans, id) { //parent) {
 	this.id = id;
+	this.ans = ans;
 	//pattern for regex
 }
 
